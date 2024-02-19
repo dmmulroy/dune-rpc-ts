@@ -10,10 +10,11 @@ function make(major: number, minor: number): Version {
 }
 
 function toSexp(version: Version): STier.Sexp {
-  return STier.of([version.major, version.minor]);
+  return STier.of([version.major.toString(), version.minor.toString()]);
 }
+
 export const Version = {
-  latest: make(0, 1),
+  latest: make(3, 14),
   make,
   toSexp,
 } as const;

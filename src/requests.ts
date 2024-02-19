@@ -26,10 +26,18 @@ function make(id: Id): InitializeRequest {
 
 function toSexp(request: InitializeRequest): STier.Sexp {
   return STier.of([
-    "methodName",
-    request.methodName,
-    ["duneVersion", request.duneVersion],
-    ["protocolVersion", request.protocolVersion],
+    [
+      "dune_version",
+      [
+        request.duneVersion.major.toString(),
+        request.duneVersion.minor.toString(),
+      ],
+    ],
+    ["id", request.id],
+    [
+      "protocol_version",
+      ProtocolVersion.getVersionNumber(request.protocolVersion).toString(),
+    ],
   ]);
 }
 
